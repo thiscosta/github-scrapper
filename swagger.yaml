@@ -1,0 +1,33 @@
+tags:
+- name: github-scrapper
+  description: Github scrapper repo info
+
+paths:
+# [GET] /repository/info
+  /repository/info:
+    get:
+      tags:
+      - info
+      summary: Get repository info
+      parameters:
+        - in: query
+          name: owner
+          schema:
+            type: string
+          description: The username of the repository owner
+        - in: query
+          name: repository
+          schema:
+            type: string
+          description: The repository name
+      responses:
+        200:
+          description: 'OK'
+        429:
+          description: 'Github requests limit reached (large repos)'
+        500:
+          description: 'Server Error'
+
+schemes:
+ - https
+ - http
