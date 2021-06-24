@@ -12,11 +12,13 @@ export class GithubFileScraper extends GithubScraperTemplate {
       .split('<span class="file-info-divider"></span>');
 
     const extension = this.path.split('').reverse().join('').split('.')[0].split('').reverse().join('');
-    const lines = isLineableExtension(extension) ? this.countHtmlContentLines(content[0]) : 0;
-    const bytes = this.getHtmlFileSizeInBytes(content[isLineableExtension(extension) ? 1 : 0]);
-    const newCount = new FileExtensionCountDTO(extension, lines, bytes);
-    const extensionIndex = this.fileExtensionCounts.findIndex(fileExtensionCount => fileExtensionCount.getExtension() === extension);
-    extensionIndex > 0 ? this.fileExtensionCounts[extensionIndex].aggregate(newCount) : this.fileExtensionCounts.push(newCount);
+    if (!extension.includes('/')) {
+      const lines = isLineableExtension(extension) ? this.countHtmlContentLines(content[0]) : 0;
+      const bytes = this.getHtmlFileSizeInBytes(content[isLineableExtension(extension) ? 1 : 0]);
+      const newCount = new FileExtensionCountDTO(extension, lines, bytes);
+      const extensionIndex = this.fileExtensionCounts.findIndex(fileExtensionCount => fileExtensionCount.getExtension() === extension);
+      extensionIndex > 0 ? this.fileExtensionCounts[extensionIndex].aggregate(newCount) : this.fileExtensionCounts.push(newCount);
+    }
   }
 
   private countHtmlContentLines(content: string): number {
