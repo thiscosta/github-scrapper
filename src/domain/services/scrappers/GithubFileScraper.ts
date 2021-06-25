@@ -1,6 +1,6 @@
 import { isLineableExtension } from '@/domain/utils/ExtensionUtils';
 import { FileExtensionCountDTO } from '../../dto/FileExtensionCountDTO';
-import { CalculationStrategyBuilder } from './calculators/strategies/CalculationStrategyBuilder';
+import { CalculationStrategyBuilder } from './calculation-strategies/CalculationStrategyBuilder';
 import { GithubScraperTemplate } from './GithubScraperTemplate';
 
 export class GithubFileScraper extends GithubScraperTemplate {

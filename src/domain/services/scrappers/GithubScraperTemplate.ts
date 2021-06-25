@@ -11,7 +11,7 @@ export abstract class GithubScraperTemplate {
   }
 
   protected async getPageHtml(): Promise<string> {
-    return (await axios.get(`https://github.com/${this.path}`)).data;
+    return (await axios.get(`https://api.allorigins.win/raw?url=https://github.com/${this.path}`)).data;
   }
 
   abstract scrap(): Promise<FileExtensionCountDTO[] | void>;

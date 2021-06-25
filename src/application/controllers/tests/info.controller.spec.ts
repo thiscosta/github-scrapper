@@ -15,10 +15,11 @@ describe('Testing Info', () => {
       return request(app.getServer())
         .get(`${infoRoute.path}`)
         .query({
-          
+          owner: 'thiscosta',
+          repository: 'typescript-patterns',
         })
         .expect(200, {
-          data: [
+          records: [
             {
               extension: 'json',
               count: 1,
