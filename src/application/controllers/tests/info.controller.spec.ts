@@ -6,7 +6,7 @@ afterAll(async () => {
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
 });
 
-describe('Testing Info', () => {
+describe('Testing Info Controller', () => {
   describe('[GET] /repository/info', () => {
     it('response statusCode 200 / info', () => {
       const infoRoute = new InfoRoute();
